@@ -55,6 +55,20 @@ class _FormWidgetState extends State<_FormWidget> {
     color: Colors.black,
   );
 
+  final textStyleRed = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: Colors.red,
+  );
+
+  final dividerLine = const Divider(
+    height: 20,
+    thickness: 1,
+    indent: 0,
+    endIndent: 0,
+    color: Color.fromARGB(255, 221, 219, 219),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -64,7 +78,7 @@ class _FormWidgetState extends State<_FormWidget> {
           'Email',
           style: textStyle,
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         TextFormField(
           decoration: const InputDecoration(
             filled: true,
@@ -73,12 +87,12 @@ class _FormWidgetState extends State<_FormWidget> {
             labelText: 'Email',
           ),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Text(
           'Password',
           style: textStyle,
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         TextFormField(
           decoration: const InputDecoration(
             filled: true,
@@ -87,26 +101,60 @@ class _FormWidgetState extends State<_FormWidget> {
             labelText: 'Password',
           ),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Remember me'),
+            Text('Remember me', style: textStyle),
             TextButton(
               onPressed: () {},
-              child: Text('Forgot password?'),
+              child: Text(
+                'Forgot password?',
+                style: textStyleRed,
+              ),
             ),
           ],
         ),
+        const SizedBox(height: 15),
+        dividerLine,
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Don\'t have an account?'),
-            TextButton(onPressed: () {}, child: Text('Sign up'))
+            const Text(
+              'Don\'t have an account?',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+              ),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text('Sign up', style: textStyleRed),
+            )
           ],
         ),
-        ElevatedButton(
-          onPressed: () {},
-          child: Text('Sign in'),
-        )
+        const SizedBox(height: 200),
+        dividerLine,
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: ElevatedButton(
+              style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.red),
+                foregroundColor: MaterialStatePropertyAll(Colors.white),
+                padding: MaterialStatePropertyAll(
+                  EdgeInsets.symmetric(horizontal: 160, vertical: 5),
+                ),
+                //foregroundColor: Colors.white,
+              ),
+              onPressed: () {},
+              child: const Text(
+                'Sign in',
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
