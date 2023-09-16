@@ -49,6 +49,24 @@ class _FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<_FormWidget> {
+  final _loginTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+
+  void _auth() {
+    final login = _loginTextController.text;
+    final password = _passwordTextController.text;
+
+    if (login == 'admin' && password == 'admin') {
+      print('Open app');
+    } else {
+      print('Incorrect login or password');
+    }
+  }
+
+  void _resetPassword() {
+    print('Reset password');
+  }
+
   final textStyle = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w700,
@@ -80,6 +98,7 @@ class _FormWidgetState extends State<_FormWidget> {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          controller: _loginTextController,
           decoration: const InputDecoration(
             filled: true,
             fillColor: Color.fromARGB(255, 221, 219, 219),
@@ -94,6 +113,7 @@ class _FormWidgetState extends State<_FormWidget> {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          controller: _passwordTextController,
           decoration: const InputDecoration(
             filled: true,
             fillColor: Color.fromARGB(255, 221, 219, 219),
@@ -107,7 +127,7 @@ class _FormWidgetState extends State<_FormWidget> {
           children: [
             Text('Remember me', style: textStyle),
             TextButton(
-              onPressed: () {},
+              onPressed: _resetPassword,
               child: Text(
                 'Forgot password?',
                 style: textStyleRed,
@@ -148,9 +168,9 @@ class _FormWidgetState extends State<_FormWidget> {
                 ),
                 //foregroundColor: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: _auth,
               child: const Text(
-                'Sign in here',
+                'Sign in',
               ),
             ),
           ),
